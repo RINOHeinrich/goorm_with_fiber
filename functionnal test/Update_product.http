@@ -1,0 +1,8 @@
+PUT http://localhost:3000/Products/1
+
+{
+    "name": "Product 2",
+    "price": 100,
+    "category": "Category 2",
+    "instock": true
+}
