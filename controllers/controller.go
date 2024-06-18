@@ -6,54 +6,54 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func GetDogs(c *fiber.Ctx) error {
-	var dogs []models.Dog
+func GetProducts(c *fiber.Ctx) error {
+	var products []models.Product
 
-	config.Database.Find(&dogs)
-	return c.Status(200).JSON(dogs)
+	config.Database.Find(&products)
+	return c.Status(200).JSON(products)
 }
 
-func GetDog(c *fiber.Ctx) error {
+func GetProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
-	var dog models.Dog
+	var product models.Product
 
-	result := config.Database.Find(&dog, id)
+	result := config.Database.Find(&product, id)
 
 	if result.RowsAffected == 0 {
 		return c.SendStatus(404)
 	}
 
-	return c.Status(200).JSON(&dog)
+	return c.Status(200).JSON(&product)
 }
 
-func AddDog(c *fiber.Ctx) error {
-	dog := new(models.Dog)
+func AddProduct(c *fiber.Ctx) error {
+	product := new(models.Product)
 
-	if err := c.BodyParser(dog); err != nil {
+	if err := c.BodyParser(product); err != nil {
 		return c.Status(503).SendString(err.Error())
 	}
 
-	config.Database.Create(&dog)
-	return c.Status(201).JSON(dog)
+	config.Database.Create(&product)
+	return c.Status(201).JSON(product)
 }
 
-func UpdateDog(c *fiber.Ctx) error {
-	dog := new(models.Dog)
+func UpdateProduct(c *fiber.Ctx) error {
+	product := new(models.Product)
 	id := c.Params("id")
 
-	if err := c.BodyParser(dog); err != nil {
+	if err := c.BodyParser(product); err != nil {
 		return c.Status(503).SendString(err.Error())
 	}
 
-	config.Database.Where("id = ?", id).Updates(&dog)
-	return c.Status(200).JSON(dog)
+	config.Database.Where("id = ?", id).Updates(&product)
+	return c.Status(200).JSON(product)
 }
 
-func RemoveDog(c *fiber.Ctx) error {
+func RemoveProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
-	var dog models.Dog
+	var product models.Product
 
-	result := config.Database.Delete(&dog, id)
+	result := config.Database.Delete(&product, id)
 
 	if result.RowsAffected == 0 {
 		return c.SendStatus(404)

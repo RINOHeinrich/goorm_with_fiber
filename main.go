@@ -13,10 +13,10 @@ func main() {
 
 	config.Connect()
 
-	app.Get("/dogs", controllers.GetDogs)
-	app.Get("/dogs/:id", controllers.GetDog)
-	app.Post("/dogs", controllers.AddDog)
-	app.Put("/dogs/:id", controllers.UpdateDog)
-	app.Delete("/dogs/:id", controllers.RemoveDog)
+	app.Get("/Products", controllers.GetProducts)
+	app.Get("/Products/:id", controllers.GetProduct)
+	app.Post("/Products", controllers.AddProduct)
+	app.Put("/Products/:id", controllers.UpdateProduct)
+	app.Delete("/Products/:id", controllers.RemoveProduct)
 	log.Fatal(app.Listen(":3000"))
 }
